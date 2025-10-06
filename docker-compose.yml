@@ -1,15 +1,10 @@
 version: '3.8'
 services:
-  web:
-    image: nginx:alpine
+  jupyter:
+    image: jupyter/datascience-notebook
     ports:
-      - "80:80"
+      - "8888:8888"
     volumes:
-      - ./html:/usr/share/nginx/html
-    
-  db:
-    image: postgres:13
+      - .:/home/jovyan/work
     environment:
-      POSTGRES_DB: myapp
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      - JUPYTER_TOKEN=mysecretpassword
